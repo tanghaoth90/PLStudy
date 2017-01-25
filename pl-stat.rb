@@ -8,11 +8,11 @@ Dir.entries(codebase_dir).select{|entry| File.directory? File.join(codebase_dir,
   puts ""
   repo = Rugged::Repository.new(codebase_dir+proj_dir)
   project = Linguist::Repository.new(repo, repo.head.target_id)
-  puts "Primary language: ".concat(project.language)
+  puts "Primary language: *" + project.language + "*"
   puts ""
   total_bytes = project.languages.map{|l,b| b}.inject(0, :+)
   puts "| Language | Percentage | Bytes |"
-  puts "|:--:|:--:|:--:|"
+  puts "|:--:| --:| --:|"
   project.languages.sort_by {|l,b| b}.reverse.each do |l,b|
     puts "| " + l + " | " + (b * 100 / total_bytes.to_f).round(1).to_s + " | " + b.to_s + " |"
   end

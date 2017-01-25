@@ -1,10 +1,10 @@
 CNTK
 ---
 
-Primary language: C++
+Primary language: *C++*
 
 | Language | Percentage | Bytes |
-|:--:|:--:|:--:|
+|:--:| --:| --:|
 | C++ | 70.1 | 8067429 |
 | Jupyter Notebook | 15.0 | 1730272 |
 | Cuda | 5.8 | 666631 |
@@ -26,10 +26,10 @@ Total bytes: 11505515
 freeCodeCamp
 ---
 
-Primary language: JavaScript
+Primary language: *JavaScript*
 
 | Language | Percentage | Bytes |
-|:--:|:--:|:--:|
+|:--:| --:| --:|
 | JavaScript | 61.2 | 500088 |
 | CSS | 23.2 | 189318 |
 | HTML | 15.6 | 127795 |
@@ -39,10 +39,10 @@ Total bytes: 817201
 metasploit-framework
 ---
 
-Primary language: Ruby
+Primary language: *Ruby*
 
 | Language | Percentage | Bytes |
-|:--:|:--:|:--:|
+|:--:| --:| --:|
 | Ruby | 99.4 | 26592603 |
 | JavaScript | 0.1 | 39514 |
 | PowerShell | 0.1 | 31607 |
@@ -67,10 +67,10 @@ Total bytes: 26745943
 osquery
 ---
 
-Primary language: C++
+Primary language: *C++*
 
 | Language | Percentage | Bytes |
-|:--:|:--:|:--:|
+|:--:| --:| --:|
 | C++ | 91.9 | 2108531 |
 | CMake | 3.2 | 74211 |
 | Objective-C++ | 2.7 | 62318 |
@@ -84,10 +84,10 @@ Total bytes: 2294331
 scikit-learn
 ---
 
-Primary language: Python
+Primary language: *Python*
 
 | Language | Percentage | Bytes |
-|:--:|:--:|:--:|
+|:--:| --:| --:|
 | Python | 91.7 | 6983017 |
 | C | 5.9 | 451977 |
 | C++ | 1.8 | 140261 |
@@ -101,10 +101,10 @@ Total bytes: 7616385
 tensorflow
 ---
 
-Primary language: C++
+Primary language: *C++*
 
 | Language | Percentage | Bytes |
-|:--:|:--:|:--:|
+|:--:| --:| --:|
 | C++ | 49.3 | 20340939 |
 | Python | 40.1 | 16537667 |
 | Jupyter Notebook | 4.4 | 1833593 |
