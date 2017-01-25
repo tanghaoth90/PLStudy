@@ -2,6 +2,7 @@ CNTK
 ---
 
 Primary language: C++
+
 | Language | Percentage | Bytes |
 |:--:|:--:|:--:|
 | C++ | 70.1 | 8067429 |
@@ -19,23 +20,27 @@ Primary language: C++
 | Matlab | 0.0 | 2932 |
 | HTML | 0.0 | 2164 |
 | Protocol Buffer | 0.0 | 1611 |
+
 Total bytes: 11505515
 
 freeCodeCamp
 ---
 
 Primary language: JavaScript
+
 | Language | Percentage | Bytes |
 |:--:|:--:|:--:|
 | JavaScript | 61.2 | 500088 |
 | CSS | 23.2 | 189318 |
 | HTML | 15.6 | 127795 |
+
 Total bytes: 817201
 
 metasploit-framework
 ---
 
 Primary language: Ruby
+
 | Language | Percentage | Bytes |
 |:--:|:--:|:--:|
 | Ruby | 99.4 | 26592603 |
@@ -56,12 +61,14 @@ Primary language: Ruby
 | PostScript | 0.0 | 109 |
 | Makefile | 0.0 | 87 |
 | DIGITAL Command Language | 0.0 | 68 |
+
 Total bytes: 26745943
 
 osquery
 ---
 
 Primary language: C++
+
 | Language | Percentage | Bytes |
 |:--:|:--:|:--:|
 | C++ | 91.9 | 2108531 |
@@ -71,12 +78,14 @@ Primary language: C++
 | Makefile | 0.3 | 6171 |
 | Thrift | 0.1 | 2969 |
 | Shell | 0.1 | 2038 |
+
 Total bytes: 2294331
 
 scikit-learn
 ---
 
 Primary language: Python
+
 | Language | Percentage | Bytes |
 |:--:|:--:|:--:|
 | Python | 91.7 | 6983017 |
@@ -86,12 +95,14 @@ Primary language: Python
 | PowerShell | 0.2 | 17042 |
 | Batchfile | 0.0 | 3366 |
 | Makefile | 0.0 | 1512 |
+
 Total bytes: 7616385
 
 tensorflow
 ---
 
 Primary language: C++
+
 | Language | Percentage | Bytes |
 |:--:|:--:|:--:|
 | C++ | 49.3 | 20340939 |
@@ -112,5 +123,6 @@ Primary language: C++
 | Batchfile | 0.0 | 6963 |
 | LLVM | 0.0 | 6536 |
 | CSS | 0.0 | 774 |
+
 Total bytes: 41258130
 
