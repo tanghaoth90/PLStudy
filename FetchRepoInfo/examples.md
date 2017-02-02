@@ -1,8 +1,13 @@
 ##Using GitHub Search API##
 
+###GitHub Search API###
+
+[search-repositories](https://developer.github.com/v3/search/#search-repositories)
+
 ###Ruby API Wrapper###
 
 [octokit.rb](https://github.com/octokit/octokit.rb): Ruby tookkit for the GitHub API
+My access token is stored in environment variable $GITACCESS.
 
 * Installation: requires Ruby version >= 2.0.
 
