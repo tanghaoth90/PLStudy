@@ -1,5 +1,9 @@
 ##Using GitHub Search API##
 
+###Files###
+
+*fetch_repo_langs.rb*: retrieving language usage data of top 1000 repositories (ranked by the number of stars) via GitHub Search API (Ruby Wrapper: *octokit.rb* )
+
 ###GitHub Search API###
 
 [search-repositories](https://developer.github.com/v3/search/#search-repositories)
