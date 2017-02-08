@@ -46,7 +46,7 @@ def lang_count(repo2langs, threshold, fout)
 		if i >= 30 
 			break 
 		end
-		fout.puts (i+1).to_s + ". [" + k + "](" + \
+		fout.puts "(" + (i+1).to_s + ") [" + k + "](" + \
 			+ "https://github.com/" + k +
 			+ ") **" + v.to_s + "** "
 		fout.puts
