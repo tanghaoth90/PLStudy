@@ -1,7 +1,7 @@
 require 'rugged'
 require 'linguist'
 
-codebase_dir = '/home/tanghao/codebase/'
+codebase_dir = '/home/tanghao/workspace/'
 Dir.entries(codebase_dir).select{|entry| File.directory? File.join(codebase_dir,entry) and !(entry=='.' || entry=='..')}.each do |proj_dir|
   puts proj_dir
   puts "---"
