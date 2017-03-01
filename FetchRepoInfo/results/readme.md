@@ -4,7 +4,7 @@ Description of each repository
 
 Format:
 
-'''
+```
 [repository_1]
 [description_for_repository_1]
 [repository_2]
@@ -12,5 +12,5 @@ Format:
 ...
 [repository_m]
 [description_for_repository_m]
-'''
+```
 
