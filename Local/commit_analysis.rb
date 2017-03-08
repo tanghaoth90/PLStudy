@@ -14,7 +14,7 @@ require 'pp'
 
 # Todo: deal with buggy commits? 
 
-proj_info = { :'tanghaoth90/PLStudy' => '.', \
+proj_info = { :'tanghaoth90/PLStudy' => '~/workspace/PLStudy', \
 	:'tensorflow/tensorflow' => '~/codebase/tensorflow', \
 	:'Microsoft/CNTK' => '~/codebase/CNTK', \
 	:'freeCodeCamp/freeCodeCamp' => '~/codebase/freeCodeCamp', \
@@ -33,11 +33,12 @@ extfile_info = { :'tanghaoth90/PLStudy' => ['.rb'], \
 
 proj_info.each do |repo_name, repo_dc|
 	#log = `cd #{repo_dc} && git log --numstat --pretty=format:"%H%n%s"`
-	outfile = File.open repo_name.to_s.gsub('/', '-')+'.log', 'w'
+	outfile = File.open 'commit_info/' + repo_name.to_s.gsub('/', '-')+'.log', 'w'
 	puts repo_name
-	commits = `cd #{repo_dc} && git log --numstat --pretty=format:"**%n%H%n%s"`.split "**\n"
+	commits = `cd #{repo_dc} && git log --no-merges --numstat --pretty=format:"**%n%H%n%s"`.split "**\n"
 	extfile_info[repo_name].each do |ext|
 		change_lines = []
+		total_linenum = `cd #{repo_dc} && git ls-files | grep '.#{ext}' | xargs cat | wc -l`
 		commits.each do |commit|
 			lines = commit.split "\n"
 			if lines.size < 2 then next end
@@ -47,13 +48,15 @@ proj_info.each do |repo_name, repo_dc|
 			delta_loc = 0
 			changes.each do |c|
 				cs = c.split
-				if cs[2].end_with? ext then delta_loc += cs[0].to_i+cs[1].to_i end
+				if cs[2].end_with?(ext) then delta_loc += cs[0].to_i+cs[1].to_i end
 			end
 			change_lines.push delta_loc
 		end
 		puts ext
+		puts total_linenum
 		puts change_lines.join " "
 		outfile.puts ext
+		outfile.puts total_linenum
 		outfile.puts change_lines.join " "
 	end
 	outfile.close
