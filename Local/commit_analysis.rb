@@ -38,22 +38,26 @@ proj_info.each do |repo_name, repo_dc|
 	commits = `cd #{repo_dc} && git log --numstat --pretty=format:"**%n%H%n%s"`.split "**\n"
 	extfile_info[repo_name].each do |ext|
 		change_lines = []
+		total_linenum = 0
 		commits.each do |commit|
 			lines = commit.split "\n"
 			if lines.size < 2 then next end
 			commit_message = lines[1]
-			if ['format'].any? { |word| commit_message.include? word} then next end
+			flag = ['format'].any? { |word| commit_message.include? word}
 			changes = lines[2..lines.size]
 			delta_loc = 0
 			changes.each do |c|
 				cs = c.split
-				if cs[2].end_with? ext then delta_loc += cs[0].to_i+cs[1].to_i end
+				if cs[2].end_with?(ext) && !flag then delta_loc += cs[0].to_i+cs[1].to_i end
+				total_linenum += cs[0].to_i - cs[1].to_i
 			end
-			change_lines.push delta_loc
+			if !flag then change_lines.push delta_loc end
 		end
 		puts ext
+		puts total_linenum
 		puts change_lines.join " "
 		outfile.puts ext
+		outfile.puts total_linenum
 		outfile.puts change_lines.join " "
 	end
 	outfile.close
