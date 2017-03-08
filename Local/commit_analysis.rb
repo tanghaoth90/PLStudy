@@ -14,21 +14,23 @@ require 'pp'
 
 # Todo: deal with buggy commits? 
 
-proj_info = { :'tanghaoth90/PLStudy' => '~/workspace/PLStudy', \
-	:'tensorflow/tensorflow' => '~/codebase/tensorflow', \
-	:'Microsoft/CNTK' => '~/codebase/CNTK', \
-	:'freeCodeCamp/freeCodeCamp' => '~/codebase/freeCodeCamp', \
-	:'rapid7/metasploit-framework' => '~/codebase/metasploit-framework', \
-	:'facebook/osquery' => '~/codebase/osquery', \
-	:'scikit-learn/scikit-learn' => '~/codebase/scikit-learn'
+proj_info = { 
+#	:'freeCodeCamp/freeCodeCamp' => '~/codebase/freeCodeCamp', \
+#	:'tensorflow/tensorflow' => '~/codebase/tensorflow', \
+#	:'Microsoft/CNTK' => '~/codebase/CNTK', \
+#	:'rapid7/metasploit-framework' => '~/codebase/metasploit-framework', \
+#	:'facebook/osquery' => '~/codebase/osquery', \
+#	:'scikit-learn/scikit-learn' => '~/codebase/scikit-learn'
+	:'BuildTimeAnalyzer-for-XCode' => '~/codebase/BuildTimeAnalyzer-for-Xcode'
 	}
-extfile_info = { :'tanghaoth90/PLStudy' => ['.rb'], \
-	:'tensorflow/tensorflow' => ['.cc', '.py'], \
-	:'Microsoft/CNTK' => ['.cpp', '.py', '.cu'], \
-	:'freeCodeCamp/freeCodeCamp' => ['.js'], \
-	:'rapid7/metasploit-framework' => ['.rb'], \
-	:'facebook/osquery' => ['.cpp'], \
-	:'scikit-learn/scikit-learn' => ['.py'] 
+extfile_info = { 
+#	:'freeCodeCamp/freeCodeCamp' => ['.js'], \
+#	:'tensorflow/tensorflow' => ['.cc', '.py'], \
+#	:'Microsoft/CNTK' => ['.cpp', '.py', '.cu'], \
+#	:'rapid7/metasploit-framework' => ['.rb'], \
+#	:'facebook/osquery' => ['.cpp'], \
+#	:'scikit-learn/scikit-learn' => ['.py'] 
+	:'BuildTimeAnalyzer-for-XCode' => ['.swift']
 	}
 
 proj_info.each do |repo_name, repo_dc|
@@ -37,8 +39,12 @@ proj_info.each do |repo_name, repo_dc|
 	puts repo_name
 	commits = `cd #{repo_dc} && git log --no-merges --numstat --pretty=format:"**%n%H%n%s"`.split "**\n"
 	extfile_info[repo_name].each do |ext|
+		puts ext
+		outfile.puts ext
 		change_lines = []
 		total_linenum = `cd #{repo_dc} && git ls-files | grep '.#{ext}' | xargs cat | wc -l`
+		puts total_linenum
+		outfile.puts total_linenum
 		commits.each do |commit|
 			lines = commit.split "\n"
 			if lines.size < 2 then next end
@@ -52,13 +58,10 @@ proj_info.each do |repo_name, repo_dc|
 			end
 			change_lines.push delta_loc
 		end
-		puts ext
-		puts total_linenum
 		puts change_lines.join " "
-		outfile.puts ext
-		outfile.puts total_linenum
 		outfile.puts change_lines.join " "
 	end
 	outfile.close
+	break
 end
 
