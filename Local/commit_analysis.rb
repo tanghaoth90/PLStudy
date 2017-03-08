@@ -42,7 +42,7 @@ proj_info.each do |repo_name, repo_dc|
 			lines = commit.split "\n"
 			if lines.size < 2 then next end
 			commit_message = lines[1]
-			if ['format', 'fix', 'bug'].any? { |word| commit_message.include? word} then next end
+			if ['format'].any? { |word| commit_message.include? word} then next end
 			changes = lines[2..lines.size]
 			delta_loc = 0
 			changes.each do |c|
