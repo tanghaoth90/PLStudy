@@ -21,7 +21,15 @@ proj_info = {
 #	:'rapid7/metasploit-framework' => '~/codebase/metasploit-framework', \
 #	:'facebook/osquery' => '~/codebase/osquery', \
 #	:'scikit-learn/scikit-learn' => '~/codebase/scikit-learn'
-	:'BuildTimeAnalyzer-for-XCode' => '~/codebase/BuildTimeAnalyzer-for-Xcode'
+#	:'BuildTimeAnalyzer-for-XCode' => '~/codebase/BuildTimeAnalyzer-for-Xcode'
+#	:'Framework7' => '~/codebase/Framework7'
+#	:'timesheet.js' => '~/codebase/timesheet.js',
+#	:'CotEditor' => '~/codebase/CotEditor',
+#	:'vue' => '~/codebase/vue',
+#	:'laravel' => '~/codebase/laravel'
+	:'echo' => '~/codebase/echo',
+	:'performance-bookmarklet' => '~/codebase/performance-bookmarklet',
+	:'Dotzu' => '~/codebase/Dotzu'
 	}
 extfile_info = { 
 #	:'freeCodeCamp/freeCodeCamp' => ['.js'], \
@@ -30,7 +38,15 @@ extfile_info = {
 #	:'rapid7/metasploit-framework' => ['.rb'], \
 #	:'facebook/osquery' => ['.cpp'], \
 #	:'scikit-learn/scikit-learn' => ['.py'] 
-	:'BuildTimeAnalyzer-for-XCode' => ['.swift']
+#	:'BuildTimeAnalyzer-for-XCode' => ['.swift']
+#	:'Framework7' => ['.js']
+#	:'timesheet.js' => ['.js'],
+#	:'CotEditor' => ['.swift'],
+#	:'vue' => ['.js'],
+#	:'laravel' => ['.php']
+	:'echo' => ['.go'],
+	:'performance-bookmarklet' => ['.js'],	
+	:'Dotzu' => ['.swift']
 	}
 
 proj_info.each do |repo_name, repo_dc|
@@ -62,6 +78,5 @@ proj_info.each do |repo_name, repo_dc|
 		outfile.puts change_lines.join " "
 	end
 	outfile.close
-	break
 end
 
