@@ -5,7 +5,6 @@ require 'pp'
 
 #Octokit.auto_paginate = true
 
-
 # lg2ext : map each language to corresponding file extensions
 # reference : https://github.com/github/linguist/   directory: linguist/samples/<language>/
 lg2ext = {
@@ -25,22 +24,25 @@ lg2ext = {
 	:Clojure => ['.clj', '.hic', '.hl', '.cljc', '.cljs', '.cljscm', '.cljx', '.cl2', '.boot'],
 	:Erlang => ['.escript', '.erl', '.app.src', '.es', '.yrl', '.xrl'],
 	:Haskell => ['.hs'],
-	:Scala => ['.sc', '.sbt']
-	}
+	:Scala => ['.sc', '.sbt'],
+	:Swift => ['.swift']
+}
 
+infofile = open 'gitcloneshell/main.sh', 'w'
 lg2ext.each do |lg,ext|
-
-	pp lg
-	pp ext
-	puts
-
-#	repos = Octokit.search_repos 'language:'.join(l), \
-#		:sort => 'stars', :order => 'desc', \
-#		:per_page => 100
-#		
-#	repos.items[0..2].each do |repo|
-#		puts repo.full_name
-#		`git clone #{repo.clone_url}`
-#	end
-
+	# get 100 repos for each language
+	repos = Octokit.search_repos 'language:' + lg.to_s, \
+		:sort => 'stars', :order => 'desc', \
+		:per_page => 100
+	lgdirname = lg == :'C++' ? 'Cpp' : lg == :'C#' ? 'CSharp' : lg.to_s
+	infofile.puts "sh #{lgdirname}.sh &"
+	fout = open "gitcloneshell/#{lgdirname}.sh", 'w'
+	fout.puts "mkdir -p #{lgdirname}"
+	fout.puts "cd #{lgdirname}"
+	repos.items.each_with_index do |repo,i|
+		puts "##{i} #{repo.full_name}"
+		fout.puts "git clone #{repo.clone_url}"
+	end
+	fout.close
 end
+infofile.close
