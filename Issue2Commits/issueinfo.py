@@ -1,4 +1,4 @@
-import sys, os, csv, json, urllib2
+import sys, os, csv, json, urllib2, re
 
 def get_json_obj(json_url):
 	try:
@@ -12,8 +12,6 @@ def get_json_obj(json_url):
 with open('time2.csv', 'rb') as csvfile:
 	reader = csv.reader(csvfile)
 	for row_id, (user_name, proj_name, _, issue_id, _) in enumerate(reader):
-		#if row_id >= 0: break
-		if row_id < 59 or row_id > 69: continue
 		issue_json = get_json_obj("https://api.github.com/repos/%s/%s/issues/%s" % (user_name, proj_name, issue_id))
 		msg, addnum, delnum = "no_commits", -1, -1
 		if issue_json:
@@ -28,7 +26,11 @@ with open('time2.csv', 'rb') as csvfile:
 				if len(commit_list) > 0: # if some events in this issue contains "commit_id"
 					msg = "events"
 				else: # if none of events contains "commit_id", check all comments
-					pass
+					comments_json = get_json_obj(issue_json["comments_url"])
+					get_commit_url = lambda s: "https://api.github.com/repos/%s/%s/commits/%s" % (user_name, proj_name, s)
+					for comment in comments_json:
+						body = comment["body"]
+						commit_list = [get_commit_url(s) for s in re.findall(r"[0-9a-f]+",body) if len(s) > 20 and get_json_obj(get_commit_url(s))]
 				if len(commit_list) > 0:
 					if msg == "no_commits": msg = "comments"
 					stats_list = [get_json_obj(commit_url)["stats"] for commit_url in commit_list]
@@ -36,7 +38,7 @@ with open('time2.csv', 'rb') as csvfile:
 					delnum = sum(stats["deletions"] for stats in stats_list)
 		else:
 			msg = "absent"
-		print ".../%s/%s/issues/%s" % (user_name, proj_name, issue_id), 
+		print "%d .../%s/%s/issues/%s" % (row_id, user_name, proj_name, issue_id), 
 		print "%s add:%d del:%d" % (msg, addnum, delnum)
 
 print "Normal termination."
