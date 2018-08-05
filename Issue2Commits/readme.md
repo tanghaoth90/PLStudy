@@ -1,3 +1,7 @@
+**Usage**: configure OAuth token (Client ID and Client Secret) in your environment as $PL_CLT_ID and $PL_CLT_SEC
+
+
+
 找一个issue对应的commit(s)的add和del行数，遵循的步骤是：
 
 1. 如果issue是pull_request，则使用对应的pull_request的add和del行数（例如：https://github.com/BVLC/caffe/pull/2958 右边已经显示了+7 -2）；
@@ -9,3 +13,4 @@
 4. 否则无法知道相关的commit。
 
 1-3 可信度从高到低
+
