@@ -9,9 +9,10 @@ def get_json_obj(json_url):
 		return None
 	return json_obj
 
-with open('time2.csv', 'rb') as csvfile:
+with open('time2.csv', 'rb') as csvfile, open('issue_change.csv', 'wb') as csvoutfile:
 	reader = csv.reader(csvfile)
-	for row_id, (user_name, proj_name, _, issue_id, _) in enumerate(reader):
+	writer = csv.writer(csvoutfile)
+	for row_id, (user_name, proj_name, lang, issue_id, _) in enumerate(reader):
 		issue_json = get_json_obj("https://api.github.com/repos/%s/%s/issues/%s" % (user_name, proj_name, issue_id))
 		msg, addnum, delnum = "no_commits", -1, -1
 		if issue_json:
@@ -40,5 +41,5 @@ with open('time2.csv', 'rb') as csvfile:
 			msg = "absent"
 		print "%d .../%s/%s/issues/%s" % (row_id, user_name, proj_name, issue_id), 
 		print "%s add:%d del:%d" % (msg, addnum, delnum)
-
+		writer.writerow([user_name, proj_name, lang, issue_id, msg, addnum, delnum])
 print "Normal termination."
